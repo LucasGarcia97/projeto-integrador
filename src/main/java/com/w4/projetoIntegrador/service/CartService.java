@@ -2,7 +2,10 @@ package com.w4.projetoIntegrador.service;
 
 import com.w4.projetoIntegrador.dtos.CartDto;
 import com.w4.projetoIntegrador.dtos.ItemCartDto;
-import com.w4.projetoIntegrador.entities.*;
+import com.w4.projetoIntegrador.entities.Buyer;
+import com.w4.projetoIntegrador.entities.Cart;
+import com.w4.projetoIntegrador.entities.ItemCart;
+import com.w4.projetoIntegrador.entities.ProductAnnouncement;
 import com.w4.projetoIntegrador.exceptions.BusinessException;
 import com.w4.projetoIntegrador.exceptions.NotFoundException;
 import com.w4.projetoIntegrador.repository.CartRepository;
@@ -61,7 +64,6 @@ public class CartService {
         List<ItemCart> itemCartList = new ArrayList<>();
 
         for (ItemCartDto itemCartDto : cartDto.getProducts()) {
-            limitingQuantitySameProductCart(itemCartDto);
             ProductAnnouncement p = productAnnouncementService.getProductAnnouncement(itemCartDto.getProductAnnouncementId());
             itemCartList.add(ItemCartDto.convert(itemCartDto, p, cart));
         }
@@ -71,11 +73,6 @@ public class CartService {
         cartDto.setTotalPrice(getTotalPrice(cart.getItemCarts()));
         return cartDto;
     }
-    private void limitingQuantitySameProductCart(ItemCartDto itemCartDto){
-            if(itemCartDto.getQuantity()>2){
-                throw new BusinessException("nao pode comprar um mesmo item mais de duas vezes.");
-            }
-        }
 
     public CartDto updateCart(Long id, CartDto cartDto) {
         Cart cart = cartRepository.findById(id).orElse(null);

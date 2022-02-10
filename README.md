@@ -78,3 +78,9 @@ values (7.0, "2022-01-27T15:13:31.253314", 10, "2023-01-27T15:13:31.253314", 1, 
 
 ###Grupo 11
 ## Mauro, Iberê, Lucas, Matheus e Stephanie
+
+#Requisito 6  - Lucas Garcia M. P. Correa
+
+Neste novo requisito optei por fazer uma mudança na regra de negócio desse projeto, ou seja,
+uma pessoa poderá comprar somente duas unidades de um mesmo produto, pois assim estaremos dando uma oportunidade para mais pessoas comprarem aquele item 
+e não iremos sobrecarregar o estoque do respectivo produto.  
